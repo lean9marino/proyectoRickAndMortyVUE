@@ -16,6 +16,7 @@
         <img :src="character.image"  alt="">
         <h1>{{character.name}}</h1>
         <h2>{{character.id}}</h2>
+        <h4>Estado: {{character.status}}</h4>
     </div>
 </template>
 

@@ -1,31 +1,50 @@
 import { createStore } from 'vuex'
 const API = "https://rickandmortyapi.com/api/character";
 
+function FiltradoPor(lista,key,nombre){
+  return lista.filter(elementos =>{
+    return elementos[key].includes(nombre) 
+  })
+}
+function ObtenerIndice(lista,id){
+  return lista.findIndex(char =>{
+    return char.id === id
+})
+}
+
 export default createStore({
   state: {
     charactersSelected:[],
-    characters: []
+    characters: [],
+    charactersRevive:[]
   },
   getters: {
     allRicks(state){
-      const listaCompleta = state.characters.filter(characters =>{
-        return characters.name.includes('Rick') || characters.name.includes('rick')
-      })
-      const listaDeSleccionados = state.charactersSelected.filter(characters =>{
-        return characters.name.includes('Rick') || characters.name.includes('rick')
-      })
+      const listaCompleta = FiltradoPor(state.characters,'name','Rick')
+      const listaDeSleccionados = FiltradoPor(state.charactersSelected,'name','Rick')
       return listaCompleta.concat(listaDeSleccionados)
+    },
+    notAliveCharacters(state){
+      return FiltradoPor(state.characters,'status','Dead')
     }
+
   },
   mutations: {
     addCharacterSelected(state,id){
-      state.charactersSelected.unshift(state.characters.splice(id,1)[0])
+      var indice = ObtenerIndice(state.characters,id)
+      state.charactersSelected.unshift(state.characters.splice(indice,1)[0])
     },
     addCharacterAll(state,id){
-      state.characters.unshift(state.charactersSelected.splice(id,1)[0])
+      var indice = ObtenerIndice(state.charactersSelected,id)
+      state.characters.unshift(state.charactersSelected.splice(indice,1)[0])
     },
     allCharacter(state,characters){
       state.characters = characters
+    },
+    revive(state,id){
+      let character = state.characters.filter(char => char.id === id)[0]
+      character.status = "Revived"
+      state.charactersRevive.push(character)
     }
   },
   actions: {
@@ -33,6 +52,7 @@ export default createStore({
         const response = await fetch(API);
         const data = await response.json();
         const personajes = data.results;
+        console.log(personajes)
         commit("allCharacter",personajes);
     }
   },

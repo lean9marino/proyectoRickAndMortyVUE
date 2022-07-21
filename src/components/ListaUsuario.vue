@@ -15,15 +15,7 @@
         },
         methods:{
             alterarSeleccion(id){
-                var indice = this.lista.findIndex(char =>{
-                    return char.id === id
-                })
-
-                if(indice > -1){
-                    //obtener el elemento a extraer
-                    
-                    this.$store.commit(this.moverA,indice)
-                }
+                this.$store.commit(this.moverA,id)
             }
         },
         components:{
