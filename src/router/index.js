@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import PersSelecView from '../views/PersSelecView.vue'
 import AllRicksView from '../views/AllRicksView.vue'
 import ReviveCharactersView from'../views/ReviveCharactersView.vue'
+import EditCharacterView from '../views/EditCharacterView.vue'
 
 const routes = [
   {
@@ -24,7 +25,12 @@ const routes = [
     path:'/revive',
     name:'revive',
     component: ReviveCharactersView
-  }
+  },
+  {  
+    path:'/editCharacter',
+    name:'editCharacter',
+    component: EditCharacterView
+  },
 ]
 
 const router = createRouter({

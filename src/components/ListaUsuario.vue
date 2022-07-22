@@ -1,9 +1,9 @@
 <template>
     <article class="row align-items-center justify-content-center">
         <h1 class="tituloP">{{titulo}}</h1>
-        <cardUsuarioVue @seleccion="alterarSeleccion"
+        <cardUsuarioVue :class="{ 'backgroundPar':$store.getters.changeBackground(character.id)}" @seleccion="alterarSeleccion"
         v-for="character of lista" v-bind:key="character.id" :character="character"></cardUsuarioVue>
-    </article>   
+    </article> 
 </template>
 <script>
     export default{
@@ -14,8 +14,8 @@
             moverA: String
         },
         methods:{
-            alterarSeleccion(id){
-                this.$store.commit(this.moverA,id)
+            alterarSeleccion(character){
+                this.$store.commit(this.moverA,character.id)
             }
         },
         components:{
@@ -25,3 +25,10 @@
 
     import cardUsuarioVue from './cardUsuario.vue';
 </script>
+
+<style scoped>
+
+.backgroundPar{
+    background: linear-gradient(180deg,#b2df28,#00b5cc)
+}
+</style>

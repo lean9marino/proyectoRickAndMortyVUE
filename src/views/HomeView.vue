@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home row">
     <ListaUsuario titulo="Todos los personajes" :lista="allCharacters" moverA="addCharacterSelected"/>
   </div>
 </template>

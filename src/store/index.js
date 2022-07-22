@@ -13,10 +13,12 @@ function ObtenerIndice(lista,id){
 }
 
 export default createStore({
+  strict: true,
   state: {
     charactersSelected:[],
     characters: [],
-    charactersRevive:[]
+    charactersRevive:[],
+    characterSelectForEdit:{}
   },
   getters: {
     allRicks(state){
@@ -26,6 +28,14 @@ export default createStore({
     },
     notAliveCharacters(state){
       return FiltradoPor(state.characters,'status','Dead')
+    },
+    characterSelectForEdit(state){
+      return state.characterSelectForEdit
+    },
+    changeBackground(state){
+      return id =>{
+        return state.characters.find(character => character.id === id).id % 2 == 0
+      }
     }
 
   },
@@ -45,6 +55,18 @@ export default createStore({
       let character = state.characters.filter(char => char.id === id)[0]
       character.status = "Revived"
       state.charactersRevive.push(character)
+    },
+    setSelectedCharacter(state,character){
+      state.characterSelectForEdit = character
+    },
+    editCharacter(state, data){
+      //Buscar el indice del personaje
+      const index = state.characters.findIndex(character => character.id === state.characterSelectForEdit.id)
+      //Componer el personaje en base a las propiedades cambiadas
+      const character = Object.assign({},state.characters[index],data)
+
+      //Actualizar activando la reactividad, ya no funciona en vue 3
+      this.state.characters[index] = character
     }
   },
   actions: {

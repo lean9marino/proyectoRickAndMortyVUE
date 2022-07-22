@@ -23,7 +23,8 @@
     <router-link to="/">Lista completa</router-link> |
     <router-link to="/seleccionados">Seleccionados</router-link> |
     <router-link to="/ricks">Lista de Ricks</router-link> |
-    <router-link to="/revive">Lista Para Revivir</router-link>
+    <router-link to="/revive">Lista Para Revivir</router-link> |
+    <router-link to="/editCharacter">Editar Personajes</router-link>
   </nav>
   <router-view/>
 </template>
