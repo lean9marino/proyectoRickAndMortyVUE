@@ -6,10 +6,7 @@
             v-for="character of lista" v-bind:key="character.id" :character="character"></cardUsuarioVue>
         </div>
         <div class="col-4">
-            <form action="">
-                <h1>formulario de edicion</h1>
-                <input type="text" v-model="name" placeholder="Nombre">
-            </form>
+            <FormularioDeEdicion/>
         </div>
     </article> 
 </template>
@@ -26,23 +23,13 @@
                 this.$store.commit('setSelectedCharacter',character)
             }
         },
-        computed:{
-            /*characterSelectForEdit(){
-                return this.$store.getters.characterSelectForEdit;
-            }*/
-            name:{
-                get(){
-                    return this.$store.getters.characterSelectForEdit.name;
-                },
-                set(value){
-                    this.$store.commit('editCharacter',{ name : value})
-                }
-            }
-        },
+        
         components:{
-            cardUsuarioVue
-        }
+    cardUsuarioVue,
+    FormularioDeEdicion
+}
     }
 
     import cardUsuarioVue from '../components/cardUsuario.vue';
+import FormularioDeEdicion from './FormularioDeEdicion.vue';
 </script>
