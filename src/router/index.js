@@ -31,6 +31,20 @@ const routes = [
     name:'editCharacter',
     component: EditCharacterView
   },
+  {
+    path:'/character/:id',
+    name: 'character',
+    component:()=>
+      import("../views/PersonajeView.vue"),
+      children:[
+        {
+          path: "datos",
+          name: "datos",
+          component: ()=> 
+          import("../components/PersonajeMasDatos.vue")
+        }
+      ]
+  }
 ]
 
 const router = createRouter({

@@ -27,10 +27,11 @@
         <h1>{{largoDelNombre}}</h1>
         <h2>{{character.id}}</h2>
         <h4>Estado: {{character.status}}</h4>
+        <RouterLink class="btn btn-success" :to="{name:'character',params:{id:character.id} }">Ver Datos</RouterLink>
     </div>
 </template>
 
-<style scoped>
+<style>
     .card{
         
         background: linear-gradient(180deg,#00b5cc,#b2df28)

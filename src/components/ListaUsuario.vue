@@ -3,6 +3,7 @@
         <h1 class="tituloP">{{titulo}}</h1>
         <cardUsuarioVue class="{ 'backgroundPar':$store.getters.changeBackground(character.id)}" @seleccion="alterarSeleccion"
         v-for="character of lista" v-bind:key="character.id" :character="character"></cardUsuarioVue>
+        
     </article> 
 </template>
 <script>
